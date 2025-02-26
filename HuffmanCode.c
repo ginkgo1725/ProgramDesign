@@ -182,8 +182,10 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
     for (size_t tmp = 0; tmp < TotalRawBytes; tmp++) {
         unsigned char TmpChar = buffer[tmp];
         // 加密操作
-        if (choice == 'y' && method == 'c') TmpChar = CaeserEncrypt(TmpChar);
-        if (choice == 'y' && method == 'a') TmpChar = AffineEncrypt(TmpChar);
+        if (choice == 'y') {
+            if (method == 'c') TmpChar = CaeserEncrypt(TmpChar);
+            if (method == 'a') TmpChar = AffineEncrypt(TmpChar);
+        }
 
         for (int i = 0; i < size; i++) {
             if (TmpChar == code[i].data) {                                  // 在编码表中查找对应字符进行编码
