@@ -1,0 +1,3 @@
+C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery _v5.7/cmake-build-debug/CMakeFiles/TextFile_CompressionAndRecovery__v5.dir
+C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery _v5.7/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery _v5.7/cmake-build-debug/CMakeFiles/rebuild_cache.dir
