@@ -15,7 +15,7 @@ void HeapAdjust (CharCount *arr, int start, int end, char* order) {
 
     if (order[0] == 'd') {
         while (child <= end) {
-            // 找出左右子节点中较小的那个
+            // 找出左右子节点中较大的那个
             if (child + 1 <= end) {
                 if (arr[child].data < arr[child + 1].data) {
                     child++;
@@ -35,13 +35,13 @@ void HeapAdjust (CharCount *arr, int start, int end, char* order) {
     }
     else {
         while (child <= end) {
-            // 找出左右子节点中较小的那个，一样频度就选数据小的
+            // 找出左右子节点中较大的那个，一样频度就选数据大的
             if (child + 1 <= end) {
                 if (arr[child].count < arr[child + 1].count || arr[child].count == arr[child + 1].count && arr[child].data < arr[child + 1].data) {
                     child++;
                 }
             }
-            // 如果父节点小于等于子节点，无需调整
+            // 如果父节点大于等于子节点，无需调整
             if (arr[parent].count > arr[child].count || (arr[parent].count == arr[child].count && arr[parent].data > arr[child].data)) {
                 break;
             }

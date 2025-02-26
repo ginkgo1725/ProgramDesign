@@ -122,6 +122,7 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
 
         if (current != NULL && DataTmp != '\0') {   // 注意：这里current->data != () '\0'字符对应的数据，根据加密方式不同需要加以修改
             text[pos++] = DataTmp;
+
             if (check == 'y') {
                 if (flag == 0 && DataTmp != '\n') DecompressedSenderInfo[SenderIndex++] = DataTmp;
                 else if (flag == 1 && DataTmp != '\n') DecompressedReceiverInfo[ReceiverIndex++] = DataTmp;
@@ -170,17 +171,7 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
     strncpy(DecompressedFIleName, HfmFileName, FileNameLen -4);
     DecompressedFIleName[FileNameLen - 4] = '\0';
     strcat(DecompressedFIleName, "_j.txt");
-    /*
-    char DecompressedFIleName[FileNameLen];
-    strcpy(DecompressedFIleName, HfmFileName);
-    DecompressedFIleName[FileNameLen] = '\0';
-    DecompressedFIleName[FileNameLen - 1] = 't';
-    DecompressedFIleName[FileNameLen - 2] = 'x';
-    DecompressedFIleName[FileNameLen - 3] = 't';
-    DecompressedFIleName[FileNameLen - 4] = '.';
-    DecompressedFIleName[FileNameLen - 5] = 'j';
-    DecompressedFIleName[FileNameLen - 6] = '_';
-*/
+
 
     //写入文件
     FILE *DecompressedFile = fopen(DecompressedFIleName, "w");
@@ -190,11 +181,12 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
     fclose(DecompressedFile);
 
     printf("\n");
+    printf("WPL: \n%d\n", TotalCompressedBits);
     uint64_t ans = fnv1a_64(text, TotalRawBytes);
-    printf("Hash value of the text before decompression: 0x%llx\n", ans);
+    printf("Hash value of the text before decompression: \n0x%llx\n", ans);
 
     double CompressRate = ceil(TotalCompressedBits / 8.0) / TotalRawBytes;
-    printf("Compression rate：%.4lf%%\n", CompressRate * 100);
+    printf("Compression rate：\n%.4lf%%", CompressRate * 100);
     free(text);
 
     clock_t finish3 = clock();

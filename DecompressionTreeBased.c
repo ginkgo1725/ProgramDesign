@@ -56,7 +56,6 @@ void DecompressTreeBased() {
         size++;
 
     }
-   // printf("\n%d\n", index);
 
     char HfmFileName[100];
     printf("Please enter the filename to decompress: \n");
@@ -117,7 +116,6 @@ void DecompressTreeBased() {
     size_t TotalCompressedBytes = fread(buffer, 1, BufferSize, HfmFile);  //一次性读取
 
 
- //   printf("@decompress TotalCompressedBytes: %llu\n", TotalCompressedBytes);
     // 把1byte变成8bit
     char *FileBinCode = malloc(TotalCompressedBytes * 8 + 1);  // 储存压缩后2进制文本编码
 
@@ -136,14 +134,13 @@ void DecompressTreeBased() {
     }
 
     FileBinCode[TotalCompressedBytes * 8] = '\0';
-//    printf("@decompress 压缩位数 WPL 填充为8倍数的：%llu\n", strlen(FileBinCode));
-
 
     clock_t TmpTime = 0;
     clock_t finish5= clock();
     //下面开始解码，按树状结构依次查找
     int success = FileDecodingTree(root, FileBinCode, HfmFileName, TotalRawBytes, &TmpTime, choice, method);
     clock_t start6 = clock();
+
     if (!success) {
         free(buffer);
         fclose(HfmFile);

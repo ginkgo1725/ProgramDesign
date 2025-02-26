@@ -37,10 +37,10 @@
  * 文本压缩部分成功结算界面
 */
 
+#include "Define.h"
 #include "Compression.h"
 #include "DecompressionTreeBased.h"
-#include "Define.h"
-#include "StateMachine.h"
+#include "DecompressionstateMachine.h"
 
 
 int main() {

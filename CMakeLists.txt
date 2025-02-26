@@ -15,8 +15,8 @@ add_executable(TextFile_CompressionAndRecovery__v5 main.c
         Compression.c
         DecompressionTreeBased.h
         DecompressionTreeBased.c
-        StateMachine.c
-        StateMachine.h
+        DecompressionStateMachine.c
+        DecompressionStateMachine.h
         CaeserCrypt.c
         AffineCrypt.c
         CaeserCrypt.h
