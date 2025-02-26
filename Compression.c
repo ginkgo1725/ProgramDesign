@@ -45,7 +45,9 @@ void Compress() {
         char InsertInfoReceiver[30];
 
         finish2 = clock();
+        printf("Please enter the sender information: \n");
         scanf("%s", InsertInfoSender);
+        printf("Please enter the receiver information: \n");
         scanf("%s", InsertInfoReceiver);
         start3 = clock();
 
@@ -156,7 +158,7 @@ void Compress() {
     fseek(RawFile, 0, SEEK_SET);    // 将指针回到文本开头
 
     if (insert == 'y') TextHuffmanCoding(word, InsertInfoFile, size, RawFileName, choice, method);    // 为更新后文本编码
-    else TextHuffmanCoding(word, RawFile, size, RawFileName, choice, method);    // 为原文本编码
+    else if (insert == 'n') TextHuffmanCoding(word, RawFile, size, RawFileName, choice, method);    // 为原文本编码
 
 
     //计算时间
