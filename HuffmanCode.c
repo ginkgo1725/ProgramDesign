@@ -79,7 +79,7 @@ void CreateHuffmanCode(HuffmanCode *code, int size) {
         WPL = WPL + code[i].count * BitSize;
     }
 
-    printf("@CreateHuffmanCode.c WPL: %llu\n", WPL);
+  //  printf("@CreateHuffmanCode.c WPL: %llu\n", WPL);
 
 
     FILE *CodeFile = fopen("code.txt", "wb");
@@ -89,7 +89,7 @@ void CreateHuffmanCode(HuffmanCode *code, int size) {
     }
 
     int TotalRawBytes = code[size * 2 - 2].count;
-    printf("@CreateHuffmanCode.c TotalRawBytes: %d\n", TotalRawBytes);    // 总字符频度(总字节数量)
+  //  printf("@CreateHuffmanCode.c TotalRawBytes: %d\n", TotalRawBytes);    // 总字符频度(总字节数量)
 
     fprintf(CodeFile, "%d\n", TotalRawBytes);    // 文件输出
 
@@ -137,11 +137,6 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
         TotalCompressedBits = TotalCompressedBits + code[i].count * BitSize;
     }
     int TotalCompressedBytes = ceil(TotalCompressedBits / 8.0);  // 压缩后文本总字节
-
-    printf("@TextHuffmanCoding\n");
-    printf("TotalCompressedBits / WPL: %llu\n", TotalCompressedBits);
-
-    printf("TotalCompressedBytes: %d\n", TotalCompressedBytes);  // 压缩后文本总字节
 
     unsigned char *buffer = malloc(BUFFERSIZE);
     if (buffer == NULL) {
@@ -191,17 +186,17 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
         if (choice == 'y' && method == 'a') TmpChar = AffineEncrypt(TmpChar);
 
         for (int i = 0; i < size; i++) {
-            if (TmpChar == code[i].data) {
+            if (TmpChar == code[i].data) {                                  // 在编码表中查找对应字符进行编码
                 char *CurrentCode = code[i].code;
                 size_t CodeLen = strlen(code[i].code);
                 for (size_t pos = 0; pos < CodeLen; pos++) {
                     // 填充字节
-                    TmpByte = (TmpByte << 1) | (CurrentCode[pos] - '0');
+                    TmpByte = (TmpByte << 1) | (CurrentCode[pos] - '0');    // 将code转化为二进制
                     BitCount++;
-                    if (BitCount == 8) {
+                    if (BitCount == 8) {                                    // 满8位存入数组中并写入.hfm文件中
                         HexCode[HexPos++] = TmpByte;
                         fwrite(&TmpByte, 1, 1, CompressedFile);    // 写入文本
-                        TmpByte = 0;
+                        TmpByte = 0;                                        //  清零重置，等待下一个8位
                         BitCount = 0;
                     }
                 }
@@ -210,31 +205,30 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
         }
     }
 
-
     // 处理剩余位
-    if (BitCount > 0) {
+    if (BitCount > 0) {    // 大于8说明需要填充
         TmpByte <<= (8 - BitCount);
-        HexCode[HexPos] = TmpByte;
+        HexCode[HexPos++] = TmpByte;
         fwrite(&TmpByte, 1, 1, CompressedFile);
     }
-
- //   printf("HexPos: %llu\n", HexPos);  = TotalCompressedBytes
+    HexCode[HexPos] = '\0';
 
     fclose(RawFile);
     fclose(CompressedFile);
 
-    printf("TotalCompressedBytes: %d\n", TotalCompressedBytes);
+    printf("WPL: \n%llu\n", TotalCompressedBits);
+    printf("Compressed size (in bytes): \n%d\n", TotalCompressedBytes);
     
 
     if (strcmp(filename, "example.hfm") == 0) {
-        printf("总哈夫曼编码值:\n");
+        printf("Total compressed value: \n");
         for (int index = 0; index < TotalCompressedBytes; index++) {
             printf("0x%02x ", HexCode[index]);
         }
         printf("\n");
     }
     else {
-        printf("最后%d字节的哈夫曼编码值:\n", (TotalCompressedBytes >= 16) ? 16 : TotalCompressedBytes);
+        printf("Compressed value (last %d bytes): \n", (TotalCompressedBytes >= 16) ? 16 : TotalCompressedBytes);
         const int start = (TotalCompressedBytes >= 16) ? (TotalCompressedBytes - 16) : 0;
         for (int index = start; index < TotalCompressedBytes; index++) {
             printf("0x%02x ", HexCode[index]);
@@ -245,8 +239,8 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
     //hash一下
     uint64_t CompressedHash = fnv1a_64(HexCode, TotalCompressedBytes);
 
-    printf("编码前文本hash值: \n0x%llx\n", RawHash);
-    printf("编码后文本hash值: \n0x%llx\n", CompressedHash);
+    printf("Hash value of the text before compression: \n0x%llx\n", RawHash);
+    printf("Hash value of the text after compression: \n0x%llx\n", CompressedHash);
 
     free(buffer);
 }

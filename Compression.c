@@ -130,9 +130,17 @@ void Compress() {
     HeapSort(word, size, order); //堆排序按字符频度升序排序编码
 
 
-    //下起哈夫曼编码区
+/*
+    // 显示词频
+    for (int i = 0; i < size; i++) {
+        printf("%02x ", word[i].data);
+        printf("%d\n", word[i].count);
+    }
+*/
 
-    //初始化哈夫曼数组
+    // 下起哈夫曼编码区
+
+    // 初始化哈夫曼数组
     for (int i = 0; i < size * 2 - 1; i++) {
         if (i >= size) word[i].count = 0;
         word[i].parent = word[i].leftchild = word[i].rightchild = -1;
@@ -141,7 +149,7 @@ void Compress() {
 
     CreateHuffmanTree(word, size);    // 建树
 
-    CreateHuffmanCode(word, size);    //获得哈夫曼编码
+    CreateHuffmanCode(word, size);    // 获得哈夫曼编码
 
 
     fseek(InsertInfoFile, 0, SEEK_SET);    // 将指针回到文本开头
@@ -151,11 +159,10 @@ void Compress() {
     else TextHuffmanCoding(word, RawFile, size, RawFileName, choice, method);    // 为原文本编码
 
 
-    printf("\n");
     //计算时间
     clock_t finish5 = clock();
     double time = (double)(finish5 - start5 + finish4 - start4 + finish3 - start3 + finish2 - start2 + finish1 - start1);
-    printf("压缩耗时：%.4lf ms\n", time);
+    printf("Compression time：\n%.4lfms", time);
 
     // 关闭文件
     fclose(RawFile);
