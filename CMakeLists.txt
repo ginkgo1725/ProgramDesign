@@ -13,11 +13,13 @@ add_executable(TextFile_CompressionAndRecovery__v5 main.c
         Define.h
         Compression.h
         Compression.c
-        CodeTreeDecompression.h
-        CodeTreeDecompression.c
+        DecompressionTreeBased.h
+        DecompressionTreeBased.c
         StateMachine.c
         StateMachine.h
         CaeserCrypt.c
         AffineCrypt.c
         CaeserCrypt.h
-        AffineCrypt.h)
+        AffineCrypt.h
+        Tree.c
+        Tree.h)

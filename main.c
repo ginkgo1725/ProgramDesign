@@ -38,7 +38,7 @@
 */
 
 #include "Compression.h"
-#include "CodeTreeDecompression.h"
+#include "DecompressionTreeBased.h"
 #include "Define.h"
 #include "StateMachine.h"
 
@@ -60,9 +60,9 @@ int main() {
             printf("Please select the decompress method: \n");
             printf("1. Tree-based\n2. State machine\n");
             while (1) {
-                scanf(" %d", &select);                                    // 选择解码方式
+                scanf("%d", &select);                                    // 选择解码方式
                 if (select == 1) {
-                    DecompressTreebased();
+                    DecompressTreeBased();
                     break;
                 }
                 else if (select == 2) {

@@ -79,8 +79,8 @@ build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Compression.c.obj: C_CO
   OBJECT_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
   OBJECT_FILE_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
 
-build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/CodeTreeDecompression.c.obj: C_COMPILER__TextFile_CompressionAndRecovery__v5_unscanned_Debug C$:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery$ _v5.7/CodeTreeDecompression.c || cmake_object_order_depends_target_TextFile_CompressionAndRecovery__v5
-  DEP_FILE = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir\CodeTreeDecompression.c.obj.d
+build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/DecompressionTreeBased.c.obj: C_COMPILER__TextFile_CompressionAndRecovery__v5_unscanned_Debug C$:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery$ _v5.7/DecompressionTreeBased.c || cmake_object_order_depends_target_TextFile_CompressionAndRecovery__v5
+  DEP_FILE = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir\DecompressionTreeBased.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
   OBJECT_FILE_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
@@ -103,6 +103,12 @@ build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/AffineCrypt.c.obj: C_CO
   OBJECT_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
   OBJECT_FILE_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
 
+build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Tree.c.obj: C_COMPILER__TextFile_CompressionAndRecovery__v5_unscanned_Debug C$:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery$ _v5.7/Tree.c || cmake_object_order_depends_target_TextFile_CompressionAndRecovery__v5
+  DEP_FILE = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir\Tree.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
+  OBJECT_FILE_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TextFile_CompressionAndRecovery__v5
@@ -111,7 +117,7 @@ build CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/AffineCrypt.c.obj: C_CO
 #############################################
 # Link the executable TextFile_CompressionAndRecovery__v5.exe
 
-build TextFile_CompressionAndRecovery__v5.exe: C_EXECUTABLE_LINKER__TextFile_CompressionAndRecovery__v5_Debug CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/main.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Hash.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/HeapSort.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/HuffmanCode.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Compression.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/CodeTreeDecompression.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/StateMachine.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/CaeserCrypt.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/AffineCrypt.c.obj
+build TextFile_CompressionAndRecovery__v5.exe: C_EXECUTABLE_LINKER__TextFile_CompressionAndRecovery__v5_Debug CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/main.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Hash.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/HeapSort.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/HuffmanCode.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Compression.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/DecompressionTreeBased.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/StateMachine.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/CaeserCrypt.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/AffineCrypt.c.obj CMakeFiles/TextFile_CompressionAndRecovery__v5.dir/Tree.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TextFile_CompressionAndRecovery__v5.dir

@@ -96,10 +96,9 @@ int CompressedFileDecodingStateMachine(StateChain *states, const char *FileBinCo
         int bit = FileBinCode[index] - '0';
         CurrentState = states[CurrentState].next[bit];
 
-        unsigned char DataTmp;
-        DataTmp = states[CurrentState].data;
+        unsigned char DataTmp = states[CurrentState].data;
         if (choice == 'y' && method == 'c') {
-            CodeTmp = 0x55;
+            CodeTmp = OFFSETCAESER;
             DataTmp = CaeserDecrypt(DataTmp);
         }
         else if(choice == 'y' && method == 'a') {
@@ -125,7 +124,7 @@ int CompressedFileDecodingStateMachine(StateChain *states, const char *FileBinCo
                     printf("%d %d ", SenderIndex, ReceiverIndex);
                     printf("\n");
                     printf("解压出的验证信息如下：\n");
-                    printf("发件人信息：%s\n收件人信息：%s\n", DecompressedSenderInfo, DecompressedReceiverInfo);
+                    printf("发件人信息：%s\n收件人信息：%s\n", (char*)DecompressedSenderInfo, (char*)DecompressedReceiverInfo);
                     if (strcmp(DecompressedSenderInfo, SenderInfo) != 0 || strcmp(DecompressedReceiverInfo, ReceiverInfo) != 0) {
                         printf("验证失败，不解压\n");
                         return 0;
@@ -166,7 +165,7 @@ int CompressedFileDecodingStateMachine(StateChain *states, const char *FileBinCo
 
     if (choice == 'y' && method == 'c') {
         for (int index = 0; index < TotalRawBytes; index++) {
-            text[index] = (text[index] - 0x55 + 0x100) % 0x100;
+            text[index] = CaeserDecrypt(text[index]);
         }
     }
     else if (choice == 'y' && method == 'a') {
@@ -218,7 +217,6 @@ int CompressedFileDecodingStateMachine(StateChain *states, const char *FileBinCo
 }
 
 void DecompressStateMachine() {
-    FILE *CodeFile;
     unsigned char CodeFileName[100];
 
     printf("Please enter the codefile name: \n");
@@ -227,7 +225,7 @@ void DecompressStateMachine() {
     clock_t start1 = clock();
 
     // 打开文件
-    CodeFile = fopen(CodeFileName, "rb");
+    FILE *CodeFile = fopen(CodeFileName, "rb");
     if (CodeFile == NULL) {
         perror("无法打开文件");
         return;
@@ -278,7 +276,6 @@ void DecompressStateMachine() {
     // printf("\n%d\n", index);
 
 
-    FILE *HfmFile;
     char HfmFileName[100];
 
 
@@ -316,7 +313,7 @@ void DecompressStateMachine() {
 
 
     // 打开文件
-    HfmFile = fopen(HfmFileName, "rb");
+    FILE *HfmFile = fopen(HfmFileName, "rb");
     if (HfmFile == NULL) {
         perror("无法打开文件");
         return;
@@ -336,14 +333,6 @@ void DecompressStateMachine() {
     //总字节数量（压缩后）
     size_t TotalCompressedBytes = fread(buffer, 1, BufferSize, HfmFile);  //一次性读取
 
-
-    for (size_t tmp = 0; tmp < TotalCompressedBytes; tmp++) {
-        //  printf("0x%02x ", buffer[tmp]);
-    }
-
-    for (size_t tmp = 0; tmp < TotalCompressedBytes; tmp++) {
-        //   printf("%x ", buffer[tmp]);
-    }
 
     //   printf("@decompress TotalCompressedBytes: %llu\n", TotalCompressedBytes);
     // 把1byte变成8bit
@@ -368,8 +357,13 @@ void DecompressStateMachine() {
 
 
     //下面开始解码
-    CompressedFileDecodingStateMachine(root, FileBinCode, HfmFileName, TotalRawBytes, choice, method);
-
+    int success = CompressedFileDecodingStateMachine(root, FileBinCode, HfmFileName, TotalRawBytes, choice, method);
+    if (!success) {
+        free(buffer);
+        fclose(HfmFile);
+        fclose(CodeFile);
+        return;
+    }
 
     //   printf("@decompress 压缩字节数 TotalCompressedBytes：%llu\n", TotalCompressedBytes);
 

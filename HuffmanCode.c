@@ -174,8 +174,6 @@ void TextHuffmanCoding(HuffmanCode *code, FILE *RawFile, int size, char filename
     fseek(RawFile, 0, SEEK_SET);
     size_t TotalRawBytes = fread(buffer, 1, BUFFERSIZE, RawFile);
 
-    printf("TotalRawBytes: %llu\n", TotalRawBytes);
-
     //hash一下
     uint64_t RawHash = fnv1a_64(buffer, TotalRawBytes);
 
