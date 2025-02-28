@@ -152,7 +152,7 @@ void DecompressTreeBased() {
 
     clock_t finish6 = clock();
     double time = finish6 - start6 + finish5 - start5 + finish4 - start4 + finish3 + TmpTime - start2 + finish1 - start1;
-    printf("Decompression time：%lfms\n", time);
+    printf("Decompression time：%lfms", time);
     free(buffer);
     fclose(HfmFile);
     fclose(CodeFile);

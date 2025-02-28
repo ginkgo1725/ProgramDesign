@@ -2,12 +2,15 @@
 // Created by Ginkgo on 2025/2/26.
 //
 
+// 根据编码构造树结构、根据树结构解码文本
+
 #ifndef TREE_H
 #define TREE_H
 #include "Define.h"
 #include "CaeserCrypt.h"
 #include "AffineCrypt.h"
 #include "Hash.h"
+
 int HexTransTree(unsigned char c);
 void FreeCodeTree(CodeTree* root);
 CodeTree* CreateNode(char choice, char method);

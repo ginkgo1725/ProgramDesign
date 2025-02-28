@@ -2,6 +2,8 @@
 // Created by Ginkgo on 2025/2/20.
 //
 
+// 建立哈夫曼树、构造编码
+
 #include "Define.h"
 #include "Hash.h"
 #include "HeapSort.h"

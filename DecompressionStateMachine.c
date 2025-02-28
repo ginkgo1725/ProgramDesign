@@ -71,7 +71,6 @@ int FileDecodingStateMachine(StateChain *states, const char *FileBinCode, char *
     clock_t finish1 = clock();
     scanf(" %c", &check);
     clock_t start2 = clock();
-    printf("your check is: %c\n", check);
 
     char SenderInfo[30],ReceiverInfo[30];
     clock_t finish2 = clock();
@@ -145,7 +144,7 @@ int FileDecodingStateMachine(StateChain *states, const char *FileBinCode, char *
  //   printf("@Decoding TotalRawBytes %d\n", TotalRawBytes)
 
     text[TotalRawBytes] = '\0';
-
+/*
     printf("Text:\n");
     for(int index = 0; index < TotalRawBytes; index++) {
         printf("%02x", text[index]);
@@ -153,7 +152,7 @@ int FileDecodingStateMachine(StateChain *states, const char *FileBinCode, char *
 
     printf("\n");
     printf("%s\n", (char*)text);
-
+*/
 
     size_t FileNameLen = strlen(HfmFileName);
     char DecompressedFIleName[FileNameLen + 2];
@@ -177,7 +176,7 @@ int FileDecodingStateMachine(StateChain *states, const char *FileBinCode, char *
  //   printf("@Decoding index/TotalRawBytes %d\n", pos);
  //   printf("@Decoding total/TotalCompressedBits %d\n", TotalCompressedBits);
     double CompressRate = ceil(TotalCompressedBits / 8.0) / TotalRawBytes;
-    printf("Compression：\n%.4lf%%", CompressRate * 100);
+    printf("Compression：\n%.4lf%%\n", CompressRate * 100);
     free(text);
 
     clock_t finish3 = clock();
@@ -326,7 +325,7 @@ void DecompressStateMachine() {
 
     clock_t finish6 = clock();
     double time = finish6 - start6 + finish5 - start5 + finish4 - start4 + finish3 + TmpTime - start2 + finish1 - start1;
-    printf("Decompression time：%lfms\n", time);
+    printf("Decompression time：%lfms", time);
     free(buffer);
     fclose(HfmFile);
     fclose(CodeFile);

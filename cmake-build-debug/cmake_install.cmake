@@ -1,4 +1,4 @@
-# Install script for directory: C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery _v5.7
+# Install script for directory: C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery _v5.7/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/.Study/ProgramDesign/Code/TextFile_CompressionAndRecovery/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

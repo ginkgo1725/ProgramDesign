@@ -81,7 +81,6 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
     clock_t finish1 = clock();
     scanf(" %c", &check);
     clock_t start2 = clock();
-    printf("your check is: %c\n", check);
 
     char SenderInfo[30],ReceiverInfo[30];
     clock_t finish2 = clock();
@@ -157,7 +156,7 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
  //   printf("@Decoding TotalRawBytes %d\n", TotalRawBytes)
 
     text[TotalRawBytes] = '\0';
-
+/*
     printf("Text:\n");
     for(int index = 0; index < TotalRawBytes; index++) {
         printf("%02x", text[index]);
@@ -165,7 +164,7 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
 
     printf("\n");
     printf("%s\n", (char*)text);
-
+*/
     size_t FileNameLen = strlen(HfmFileName);
     char DecompressedFIleName[FileNameLen + 2];
     strncpy(DecompressedFIleName, HfmFileName, FileNameLen -4);
@@ -186,7 +185,7 @@ int FileDecodingTree(CodeTree *root, const char *FileBinCode, char *HfmFileName,
     printf("Hash value of the text before decompression: \n0x%llx\n", ans);
 
     double CompressRate = ceil(TotalCompressedBits / 8.0) / TotalRawBytes;
-    printf("Compression rate：\n%.4lf%%", CompressRate * 100);
+    printf("Compression rate：\n%.4lf%%\n", CompressRate * 100);
     free(text);
 
     clock_t finish3 = clock();
